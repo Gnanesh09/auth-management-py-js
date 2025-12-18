@@ -17,7 +17,7 @@ class AuthService:
         return user
     
     def authenticate(self, db:Session,email:str,password:str):
-        user = db.query(User).filter(User.email==email)
+        user = db.query(User).filter(User.email==email).first()
         if not user:
             return None
         if not self.verify_password(password,user.password):
